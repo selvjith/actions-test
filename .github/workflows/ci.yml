@@ -1,11 +1,6 @@
 name: test
 on:
   workflow_dispatch:
-    inputs:
-      dry-run:
-        description: dry-run
-        default: true
-        type: boolean
 jobs:
   concatinate:
     runs-on: ubuntu-latest
