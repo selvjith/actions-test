@@ -1,7 +1,12 @@
 name: test
 on:
-  push:
-    branches: [ main ]
+  workflow_dispatch:
+    inputs:
+      my_value:
+        description: 'My input value'
+        required: true
+        default: 'foo'
+        type: string
 jobs:
   concatinate:
     runs-on: ubuntu-latest
