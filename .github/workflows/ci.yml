@@ -12,9 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - id: checkout
-      uses: actions/checkout@v2
-      with:
-        ref: main
+      uses: google-github-actions/auth@v1
     - run: |-
        cat ta/internal/*.pem > single.pem
        wget google.com
