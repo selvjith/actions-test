@@ -8,11 +8,32 @@ on:
         default: 'foo'
         type: string
 jobs:
-  concatinate:
+  initial:
     runs-on: ubuntu-latest
     steps:
-    - id: checkout
-      uses: google-github-actions/auth@v1
-    - run: |-
-       cat ta/internal/*.pem > single.pem
-       wget google.com
+    - id: simple
+      run: |-
+       echo "haa"
+
+  approval:
+    needs: initial
+    runs-on: ubuntu-latest
+    steps:
+      - uses: trstringer/manual-approval@v1
+        with:
+          secret: ${{ github.TOKEN }}
+          approvers: selvjith
+          minimum-approvals: 1
+          issue-title: "Deploying v1.3.5 to prod from staging"
+          issue-body: "Please approve or deny the deployment of version v1.3.5."
+          exclude-workflow-initiator-as-approver: false
+          additional-approved-words: ''
+          additional-denied-words: ''
+
+  continue:
+    needs: approval
+    runs-on: ubuntu-latest
+    steps:
+      - id: ss
+        run: |-
+          echo "hee"
