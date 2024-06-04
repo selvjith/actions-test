@@ -18,7 +18,7 @@ jobs:
   approval:
     needs: initial
     runs-on: ubuntu-latest
-    environment: main
+    environment: release
     steps:
       - id: ddd
         run: |-
